@@ -1,0 +1,18 @@
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 10%;
+  font-family: emoji;
+  margin-top: 15px;
+  /* color: white; */
+  display: inline-block;
+  background: linear-gradient(#3ea6ff, #5b5bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1;
+  z-index: 1000;
+}
