@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.singupPage {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/Netflix-Clone/images/Signup3.jpg");
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.passwordField {
+  position: relative;
+}
+
+.showEye {
+  position: absolute;
+  right: 15px;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: thistle;
+}
+
+.singupCard {
+  width: 750px;
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  background: rgb(28 38 50 / 6%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.singupCard h2 {
+  color: #93c5fd;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
+}
+
+.signupButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+  transform: translateY(-3px);
+}
+
+.signupButton {
+  transition: all 0.3s ease;
+}
+
+.singupCard .title {
+  padding: 10px;
+}
+
+.formData input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1.2rem;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font-style: oblique;
+}
+
+.formData input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+}
+.nameRow {
+  display: flex;
+  gap: 20px;
+}
+
+.nameRow input {
+  flex: 1;
+}
+
+.loginLink {
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 35px;
+}
+
+.loginLink a {
+  color: #60a5fa;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.loginLink a:hover {
+  text-decoration: underline;
+}
+
+.signupButton {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #3ea6ff, #3b3bd4);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.fieldContainer {
+  position: relative;
+}
+
+.errorMessage {
+  position: absolute;
+  display: block;
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: -24px;
+  width: 100%;
+  font-style: italic;
+}
+
+.errorMessage.leftError {
+  text-align: left;
+}
+
+.errorMessage.rightError {
+  text-align: right;
+  right: 142px;
+}
+
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.password-hints {
+  position: relative;
+}
+
+.password-hint {
+  position: absolute;
+  top: -20px;
+  margin-left: 10px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 1.5;
+  color: aliceblue;
+  z-index: 1;
+  width: fit-content;
+  max-width: 500px;
+  padding: 8px 12px;
+  margin-top: 5px;
+  background: rgba(25, 35, 80, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 12px;
+  color: #ddd;
+}
+
+.password-hint strong {
+  font-weight: 600;
+}
+
+.password-hint::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 30px;
+
+  width: 10px;
+  height: 10px;
+
+  background: rgba(25, 35, 80, 0.95);
+  transform: rotate(45deg);
+}
