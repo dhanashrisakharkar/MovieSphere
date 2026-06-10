@@ -34,9 +34,9 @@ function Login() {
       currentUser ? navigate("/Home") : alert("please enter valid details");
     }
     if (currentUser && rememberMe) {
-      localStorage.setItem(JSON.stringify(currentUser));
+      localStorage.setItem("users", JSON.stringify(currentUser));
     } else {
-      sessionStorage.setItem(JSON.stringify(currentUser));
+      sessionStorage.setItem("users", JSON.stringify(currentUser));
     }
   }
 
