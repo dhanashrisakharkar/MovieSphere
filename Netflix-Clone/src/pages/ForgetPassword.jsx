@@ -22,37 +22,42 @@ function ForgetPassword() {
     email: "",
   });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    if (useEmailID !== "") {
-      users = users.map((a) => {
-        if (a.email === useEmailID) {
-          return {
-            ...a,
-            [password]: password,
-            [password]: password,
-          };
-        }
-        return a;
-      });
-      localStorage.setItem("users", JSON.stringify(users));
+
+    const response = await fetch("http://localhost:5000/resetPassword" , {
+      method :'Post',
+      headers:{
+        "content-type" : "Application/json"
+      },
+      body : JSON.stringify({password : password , email : useEmailID})
+    })
+    const data = await response.json();
+    if (!response.ok) {
+      alert(data.message);
+      return;
     }
-    if (!password) {
-      alert("please reset your password first");
-    } else {
-      navigate("/");
-    }
+    navigate("/");
+
+    
   }
 
-  function handleEmailSubmit(e) {
+  async function handleEmailSubmit(e) {
     e.preventDefault();
-    if (!useEmailID) {
-      alert("please enter mail id first");
-      setEmailVerified(false);
-    } else {
-      setEmailVerified(true);
+
+    const response = await fetch("http://localhost:5000/emailVerification", {
+      method: "Post",
+      headers: {
+        "Content-type": "Application/json",
+      },
+      body: JSON.stringify({email : useEmailID})
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      alert(data.message);
+      return;
     }
+    setEmailVerified(true);
   }
 
   function verifyRegexPattern(name, value) {

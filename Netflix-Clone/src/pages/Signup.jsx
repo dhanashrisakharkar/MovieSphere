@@ -21,14 +21,13 @@ function Signup() {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showHint, setShowHint] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit (e) {
     e.preventDefault();
     const finalObj = {};
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -48,12 +47,24 @@ function Signup() {
     ) {
       if (userFormData.password !== userFormData.confirmPassword) return;
       finalObj.password = userFormData.password;
-      finalObj.confirmPassword = userFormData.confirmPassword;
+      // finalObj.confirmPassword = userFormData.confirmPassword;
     }
-    users.push(finalObj);
-    localStorage.setItem("users", JSON.stringify(users));
+    const response = await fetch("http://localhost:5000/signup" , {
+      method : "POST",
+      headers :{
+        "Content-Type" : "Application/json",
+      },
+      body: JSON.stringify(userFormData)
+    })
+    const data = await response.json();
+    console.log(data.message);
+
+    if(!response.ok){
+      alert("user is already registered");
+      return;
+    }
     navigate("/");
-  }
+  };
 
   function handleOnChange(e) {
     const updateFormDate = { ...userFormData, [e.target.name]: e.target.value };

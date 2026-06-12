@@ -20,23 +20,31 @@ function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  function handleSubmit(e) {
+ async function handleSubmit(e) {
     e.preventDefault();
     let users = JSON.parse(localStorage.getItem("users")) || [];
     let currentUser;
 
-    if (users.length) {
-      currentUser = users.find((a) => {
-        return (
-          userformData.email === a.email && userformData.password === a.password
-        );
-      });
-      currentUser ? navigate("/Home") : alert("please enter valid details");
+    const response = await fetch("http://localhost:5000/login" , {
+      method : "POST",
+      headers : {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify(userformData)
+    })
+    const data = await response.json();
+
+    if(!response.ok){
+      alert(data.message);
+      return;
     }
+
+    navigate("/Home") 
+
     if (currentUser && rememberMe) {
-      localStorage.setItem("users", JSON.stringify(currentUser));
-    } else {
-      sessionStorage.setItem("users", JSON.stringify(currentUser));
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    } else if(currentUser && !rememberMe){
+      sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
     }
   }
 

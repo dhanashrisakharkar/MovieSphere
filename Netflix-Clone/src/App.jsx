@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter basename="/MovieSphere">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
