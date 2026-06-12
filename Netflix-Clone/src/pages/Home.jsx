@@ -7,20 +7,32 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API_KEY } from "../api/tmdb";
 import MyNetflix from "./MyNetflix";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [showMenu, setShowMenu] = useState(false);
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-       setMovies(data.results);
+        console.log(data);
+        setMovies(data.results);
       })
       .then((data) => console.log(data));
   }, []);
+
+  useEffect(() => {
+    const currentUser =
+      JSON.parse(localStorage.getItem("currentUser")) ||
+      JSON.parse(sessionStorage.getItem("currentUser"));
+
+      if(!currentUser){
+        navigate('/')
+      }
+  } ,[]);
   return (
     <>
       <nav className="navbar">
@@ -29,15 +41,13 @@ function Home() {
         <div className="navLinks">
           <button>Home</button>
           <button onClick={() => setShowMenu(!showMenu)}>My Netflix</button>
-          {showMenu && ( 
-           <MyNetflix />
-          )}
+          {showMenu && <MyNetflix />}
         </div>
       </nav>
 
       <main className="homePage">
         <section className="heroSection">
-          {movies.length > 0 && ( <HeroBanner movie={movies[4]} />)}
+          {movies.length > 0 && <HeroBanner movie={movies[4]} />}
         </section>
 
         <section className="moviesCard">
@@ -50,9 +60,8 @@ function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {movies.length > 0 && (movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            )))}
+            {movies.length > 0 &&
+              movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
           </motion.div>
           {/* </div> */}
         </section>

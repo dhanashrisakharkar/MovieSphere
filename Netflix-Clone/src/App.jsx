@@ -15,17 +15,6 @@ import { Navigate } from "react-router-dom";
 function App() {
   const [search, setSearch] = useState("");
   const result = useState("");
-  const currentUser =
-    JSON.parse(localStorage.getItem("currentUser")) ||
-    JSON.parse(sessionStorage.getItem("currentUser"));
-
-    console.log(
-  JSON.parse(localStorage.getItem("currentUser"))
-);
-
-console.log(
-  JSON.parse(sessionStorage.getItem("currentUser"))
-);
   // const moviesList = filterMovie(movies, search);
 
   return (
