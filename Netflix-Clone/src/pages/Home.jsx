@@ -37,7 +37,7 @@ function Home() {
 
       <main className="homePage">
         <section className="heroSection">
-          {movies.length > 0 && ( <HeroBanner movie={movies[1]} />)}
+          {movies.length > 0 && ( <HeroBanner movie={movies[4]} />)}
         </section>
 
         <section className="moviesCard">

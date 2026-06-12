@@ -20,32 +20,31 @@ function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
- async function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     let users = JSON.parse(localStorage.getItem("users")) || [];
-    let currentUser;
 
-    const response = await fetch("https://moviesphere-1.onrender.com/login" , {
-      method : "POST",
-      headers : {
-        "Content-Type": "Application/json"
+    const response = await fetch("https://moviesphere-1.onrender.com/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json",
       },
-      body: JSON.stringify(userformData)
-    })
+      body: JSON.stringify(userformData),
+    });
     const data = await response.json();
-
-    if(!response.ok){
+    const currentUser = data.user;
+    if (!response.ok) {
       alert(data.message);
       return;
     }
 
-    navigate("/Home") 
-
     if (currentUser && rememberMe) {
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    } else if(currentUser && !rememberMe){
+    } else if (currentUser && !rememberMe) {
       sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
     }
+
+    navigate("/Home");
   }
 
   function handleOnChange(e) {
@@ -114,7 +113,13 @@ function Login() {
                 ></input>
                 Remember me
               </label>
-              <Link to={"/ForgetPassword"} state={{ email: userformData.email }}> Forget Password</Link>
+              <Link
+                to={"/ForgetPassword"}
+                state={{ email: userformData.email }}
+              >
+                {" "}
+                Forget Password
+              </Link>
             </div>
             <button type="submit" className="loginButton">
               Login
