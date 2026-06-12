@@ -28,7 +28,7 @@ router.post("/login", async (req, res) => {
         user : existingUser
     })
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).send("something went wrong");
   }
 });
