@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const router =  express.Router();
+const router = express.Router();
 const User = require("../model/user");
 
-router.post("/signup" , async (req , res) => {
-     try {
+router.post("/signup", async (req, res) => {
+  try {
+    console.log("SIGNUP HIT");
     console.log(req.body);
     const user = new User(req.body);
     const existingUser = await User.findOne({
@@ -18,14 +19,17 @@ router.post("/signup" , async (req , res) => {
     } else {
       await user.save();
       return res.json({
-        message : "user registered successfully"
-      })
+        message: "user registered successfully",
+      });
     }
     console.log(user);
   } catch (err) {
     console.log(err);
-    res.status(500).send("something went wrong");
+    // res.status(500).send("something went wrong");
+    return res.status(500).json({
+      message: err.message,
+    });
   }
-})
+});
 
 module.exports = router;
