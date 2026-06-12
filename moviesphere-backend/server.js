@@ -21,6 +21,11 @@ mongoose
     console.log(err);
   });
 
+
+  app.get("/", (req, res) => {
+  res.send("MovieSphere Backend Running");
+});
+
 app.use(signupRoute);
 app.use(loginRoute);
 app.use(forgetPassword);

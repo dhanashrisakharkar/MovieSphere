@@ -25,7 +25,7 @@ function ForgetPassword() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/resetPassword" , {
+    const response = await fetch("https://moviesphere-1.onrender.com/resetPassword" , {
       method :'Post',
       headers:{
         "content-type" : "Application/json"
@@ -45,7 +45,7 @@ function ForgetPassword() {
   async function handleEmailSubmit(e) {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/emailVerification", {
+    const response = await fetch("https://moviesphere-1.onrender.com/emailVerification", {
       method: "Post",
       headers: {
         "Content-type": "Application/json",
