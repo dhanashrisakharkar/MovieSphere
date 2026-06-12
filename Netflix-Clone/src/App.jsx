@@ -18,6 +18,14 @@ function App() {
   const currentUser =
     JSON.parse(localStorage.getItem("currentUser")) ||
     JSON.parse(sessionStorage.getItem("currentUser"));
+
+    console.log(
+  JSON.parse(localStorage.getItem("currentUser"))
+);
+
+console.log(
+  JSON.parse(sessionStorage.getItem("currentUser"))
+);
   // const moviesList = filterMovie(movies, search);
 
   return (
@@ -27,7 +35,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/ForgetPassword" element={<ForgetPassword />} />
-          <Route path="/Home" element={currentUser ? <Home /> : <Navigate to={"/"} />} />
+          <Route path="/Home" element={<Home />} />
           {/* <Route path="/profile" element={<Profile />} />
           <Route path="/payment" element={<Payment />} /> */}
         </Routes>
