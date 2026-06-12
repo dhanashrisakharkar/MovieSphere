@@ -11,25 +11,28 @@ router.post("/login", async (req, res) => {
       email: req.body.email,
     });
 
-    if(!existingUser){
-        return res.status(400).json({
-            message:"user not found"
-        })
+    if (!existingUser) {
+      return res.status(400).json({
+        message: "user not found",
+      });
     }
 
-    if(existingUser.password !== user.password){
-        return res.status(400).json({
-            message:"invalid password"
-        })
+    if (existingUser.password !== user.password) {
+      return res.status(400).json({
+        message: "invalid password",
+      });
     }
 
-    return req.json({
-        message : "login successfull",
-        user : existingUser
-    })
+    return res.json({
+      message: "login successfull",
+      user: existingUser,
+    });
   } catch (error) {
     console.log(error);
-    res.status(500).send("something went wrong");
+
+    return res.status(500).json({
+      message: "something went wrong",
+    });
   }
 });
 
