@@ -1,3 +1,5 @@
+import os
+
 from __future__ import annotations
 
 from collections.abc import Generator, Sequence
@@ -404,7 +406,7 @@ def recommend_movies(payload: RecommendationRequest, session: Session = Depends(
 def main() -> None:
     import uvicorn
 
-    uvicorn.run("app.main:app", host="0.0.0.0", port=3000, reload=False)
+    uvicorn.run("app.main:app", host="0.0.0.0", reload=False , port=int(os.environ.get("PORT", 3000)))
 
 
 if __name__ == "__main__":
