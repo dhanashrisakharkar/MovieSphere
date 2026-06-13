@@ -13,9 +13,11 @@ function MovieCard({ movie }) {
       setHovered(true);
     }, 1000);
 
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`,
-    );
+    // const res = await fetch(
+    //   `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`,
+    // );
+
+    const res = await fetch(`https://moviesphere-1.onrender.com/recommendations`);
 
     const data = await res.json();
 

@@ -5,6 +5,7 @@ const cors = require("cors");
 const signupRoute = require("./routes/signup");
 const loginRoute = require("./routes/login");
 const forgetPassword = require("./routes/forgetPassword");
+const movies = require("./routes/movies");
 
 const app = express();
 app.use(cors());
@@ -29,6 +30,7 @@ mongoose
 app.use(signupRoute);
 app.use(loginRoute);
 app.use(forgetPassword);
+app.use(movies);
 
 // app.get("/users", async (req, res) => {
 //   const users = await User.find();

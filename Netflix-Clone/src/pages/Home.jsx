@@ -15,11 +15,14 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+    // fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+    fetch(`http://localhost:5000/recommendations`, {
+      method: "POST",
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setMovies(data.results);
+        setMovies(data.data);
       })
       .then((data) => console.log(data));
   }, []);
@@ -29,10 +32,10 @@ function Home() {
       JSON.parse(localStorage.getItem("currentUser")) ||
       JSON.parse(sessionStorage.getItem("currentUser"));
 
-      if(!currentUser){
-        navigate('/')
-      }
-  } ,[]);
+    if (!currentUser) {
+      navigate("/");
+    }
+  }, []);
   return (
     <>
       <nav className="navbar">
@@ -47,7 +50,7 @@ function Home() {
 
       <main className="homePage">
         <section className="heroSection">
-          {movies.length > 0 && <HeroBanner movie={movies[4]} />}
+          {movies.length > 0 && <HeroBanner movie={movies[1]} />}
         </section>
 
         <section className="moviesCard">
